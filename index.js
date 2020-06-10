@@ -30,6 +30,8 @@ const getProductPageController = require('./controllers/getProduct');
 const editProfileController = require('./controllers/editProfile');
 const connectMongo = require('connect-mongo');
 const connectFlash = require('connect-flash');
+const latestProductsPageController = require('./controllers/latestProductsPage');
+const editProductController = require('./controllers/editProduct');
 
 const app = express();
 
@@ -85,6 +87,7 @@ app.get('/logout', auth, logoutController);
 app.get('/register', redirectIfAuthenticated, registerPageController);
 app.get('/cart', auth, cartPageController);
 app.get('/products/:id', upload.none(), getProductPageController);
+app.get('/latest-products', latestProductsPageController);
 app.post('/login-user', upload.none(), userLoginController);
 app.post('/register-user', upload.none(), redirectIfAuthenticated, userRegisterController);
 app.post('/addproduct', upload.single('image'),  auth, addProductController);
@@ -92,7 +95,7 @@ app.post('/addcategory', upload.single('image'), adminAuth, addCategoryControlle
 app.post('/products/:product_id', upload.none(), addToCartController);
 app.post('/remove-from-cart', upload.none(), adminAuth, removeFromCartController);
 app.post('/edit-profile', upload.none(), editProfileController);
-
+app.post('/edit-product', auth, adminAuth, editProductController);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");

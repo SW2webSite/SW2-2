@@ -43,6 +43,52 @@
         <% } %>
       </form>
 
+      <% if(adminAuth){ %>
+        <div class="row">
+          <form class="" action="/edit-product" method="post">
+            <div class="card card-body dashBox">
+              <div class="control-group">
+                <h1>Edit Product</h1>
+                <div class="form group floating-label-form-group controls">
+                  <div class="input-field col s12">
+                    <label>Name</label>
+                    <input type="text" name="productName" value="">
+                  </div>
+                </div>
+                <div class="form group floating-label-form-group controls">
+                  <div class="input-field col s12">
+                    <label>Price</label>
+                    <input type="text" name="productPrice" value="">
+                  </div>
+                </div>
+                <div class="form group floating-label-form-group controls">
+                  <div class="input-field col s12">
+                    <label>Description</label>
+                    <input type="text" name="productDescription" value="">
+                  </div>
+                </div>
+                <div class="form group floating-label-form-group controls">
+                  <div class="input-field col s12">
+                    <label>Category</label>
+                    <select class="form-control" name="productCategory">
+                    <option value="" disabled selected>Choose your option</option>
+                    <% Categories.forEach(function(category){ %>
+                      <option value="<%=category._id%>"><%=category.name%></option>
+                    <%  }) %>
+                  </select>
+                  </div>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="form-group text-center">
+                  <button type="submit" class="btn btn-primary" name="button">Edit</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+    <%  } %>
+
     </div>
   </div>
 </div>
